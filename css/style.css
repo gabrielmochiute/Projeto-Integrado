@@ -10,6 +10,11 @@
   --font: #3a3a3a;
 }
 
+@font-face {
+  font-family: OPTIFrankfurter;
+  src: url(../fonts/OPTIFrankfurter-Medium.otf);
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -93,10 +98,28 @@ nav ul {
   font-weight: 400;
 }
 
+nav ul li {
+  transition: 0.3s ease-in-out;
+  border-radius: 50px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+nav ul li:hover {
+  background-color: var(--primaryLight);
+}
+
 nav ul li span {
-  padding: 0px 40px;
+  padding: 5px 40px;
   background-color: var(--primaryLight);
   border-radius: 50px;
+  transition: 0.3s;
+}
+
+nav ul li span:hover {
+  background-color: var(--secondaryLight);
+  border-radius: 50px;
+  color: var(--primary);
 }
 
 .overlay {
@@ -116,27 +139,39 @@ nav ul li span {
 #banner {
   padding-top: 150px;
   width: 100%;
-  height: 500px;
+  height: 90vh;
   background-image: url("../images/banner.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
+  overflow: hidden;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  flex-direction: column;
+  justify-content: center;
+  /* flex-direction: column; */
 
   gap: 15px;
 
   color: var(--white);
+  position: relative;
 }
 
+#banner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 #banner h1 {
-  font-size: 48px;
+  user-select: none;
+  font-size: 10em;
   text-transform: uppercase;
-  font-weight: 600;
+  /* font-weight: 100; */
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 #banner p {
@@ -163,11 +198,29 @@ nav ul li span {
 #firstButton {
   background-color: var(--secondary);
   color: var(--primary);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+  box-shadow: 3px 3px 15px #4a148c63;
 }
 
 #secondButton {
   background-color: var(--primary);
   color: var(--secondary);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+  box-shadow: 3px 3px 15px #4a148c63;
+}
+#firstButton:hover,
+#secondButton:hover {
+  background-color: var(--primaryLight);
+  color: var(--secondary);
+}
+
+#firstButton:active,
+#secondButton:active {
+  transform: scale(0.95);
+  transition: 0.1s ease-in;
+  background-color: var(--primary);
 }
 
 #whatIs {
@@ -192,6 +245,7 @@ nav ul li span {
 
   text-transform: uppercase;
   color: var(--primary);
+  font-family: OPTIFrankfurter;
 }
 
 #whatIsContainer p {
@@ -216,6 +270,7 @@ nav ul li span {
 
   text-transform: uppercase;
   color: var(--primary);
+  font-family: OPTIFrankfurter;
 }
 
 #typesContainer {
@@ -226,7 +281,97 @@ nav ul li span {
   align-items: center;
 }
 
+.box {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+  transition: 0.5s;
+}
+
+.box .imgBox {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.box:hover {
+  height: 400px;
+}
+
+.box .imgBox img {
+  max-width: 100%;
+  background-color: var(--primaryDark);
+  opacity: 0.1;
+  transition: 0.5s;
+}
+
+.box:hover .imgBox img {
+  opacity: 1;
+}
+
+.box:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background-color: var(--primary);
+  z-index: -1;
+}
+
+.box:after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background-color: var(--primary);
+  z-index: -2;
+  filter: blur(40px);
+}
+
+.box .content {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.box:hover .content {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.box .content h2 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+
 .typeCards {
+  position: relative;
   width: 320px;
   height: 400px;
   background: linear-gradient(
@@ -243,7 +388,12 @@ nav ul li span {
 }
 
 .typeCards img {
-  width: 75%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
 }
 
 .typeCards h2 {
@@ -254,11 +404,12 @@ nav ul li span {
 
 .typeCards button {
   width: 75%;
-  padding: 5px 0px;
+  padding: 15px 5px;
   border-radius: 50px;
   border: none;
 
   font-weight: 500;
+  font-size: large;
   color: var(--white);
   text-transform: uppercase;
 
@@ -288,7 +439,8 @@ nav ul li span {
 
 #aboutUsContainer h1 {
   font-size: 36px;
-  font-weight: 500;
+  font-weight: 200;
+  font-family: OPTIFrankfurter;
   text-transform: uppercase;
   margin-bottom: 25px;
 }
